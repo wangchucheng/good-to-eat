@@ -25,12 +25,15 @@ public class Recipe {
     @Column(nullable = false)
     private String size;//份量
 
+    @Column(nullable = false)
     @ElementCollection
     private List<Ingredients> ingredientsList;
 
+    @Column(nullable = false)
     @ElementCollection
     private List<Nutrition> nutritionList;
 
+    @Column(nullable = false)
     @ElementCollection
     private List<Step> stepList;
 

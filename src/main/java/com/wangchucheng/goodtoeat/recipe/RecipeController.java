@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value="/recipe")
 public class RecipeController {
@@ -16,7 +18,8 @@ public class RecipeController {
                                   @RequestParam("image") String image,
                                   @RequestParam("timeNeeded") String timeNeeded,
                                   @RequestParam("difficulty") String difficulty,
-                                  @RequestParam("size") String size){
+                                  @RequestParam("size") String size,
+                                  @RequestParam("ingredientsList")List<Ingredients> ingredientsListgit){
         boolean isSuccess=recipeService.saveRecipe(title,image,timeNeeded,difficulty,size);
         return isSuccess;
 
