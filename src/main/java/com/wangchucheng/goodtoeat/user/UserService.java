@@ -8,24 +8,25 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    boolean saveUser(String openId,User user){
-        if(openId!=null&&user!=null){
-        user.setOpenId(openId);
-        if(user.getName()!=null&&user.getSex()!=null){
+    boolean saveUser(String openid,String sex,String name){
+        User user=new User();
+        if(openid!=null&&name!=null&&sex!=null){
+            user.setOpenId(openid);
+            user.setName(name);
+            user.setSex(sex);
             userRepo.save(user);
             return true;
-        }
         }
             return false;
 
     }
-    User findUser(String openId){
-        return userRepo.findUserByOpenId(openId);
+    User findUser(String openid){
+        return userRepo.findUserByOpenId(openid);
     }
-    boolean updateUser(String openId,User user){
+    boolean updateUser(String openid,User user){
         //用user来更新openid的user
-        if(openId!=null&&user!=null){
-            User old=userRepo.findUserByOpenId(openId);//openid必须有效
+        if(openid!=null&&user!=null){
+            User old=userRepo.findUserByOpenId(openid);//openid必须有效
             if(user.getSex()!=null){
                 old.setSex(user.getSex());
             }else{

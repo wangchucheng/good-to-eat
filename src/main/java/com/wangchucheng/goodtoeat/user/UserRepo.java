@@ -3,6 +3,6 @@ package com.wangchucheng.goodtoeat.user;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepo extends JpaRepository<User,String> {
-    User findUserByOpenId(String openId);
+    User findUserByOpenId(String openid);
 
 }
