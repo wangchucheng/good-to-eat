@@ -1,38 +1,41 @@
 package com.wangchucheng.goodtoeat.post;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
-public class Post {
-    @Id
-    @GeneratedValue
+public class PostResult {
     private Long id;
-
-    @Column(nullable = false)
     private String openid;
-
-    @Column(nullable = false)
-    @ElementCollection
+    private String name;
+    private String profile;
     private List <String> images;
-
     private String text;
-
-    @Column(nullable = false)
     private Timestamp time;
-
     private String recipeid;
 
-    public Post() {
+    public PostResult() {
     }
 
-    public Post(String openid, List <String> images, String text, Timestamp time, String recipeid) {
+    public PostResult(Long id, String openid, String name, String profile,
+                      List <String> images, String text, Timestamp time, String recipeid) {
+        this.id = id;
         this.openid = openid;
+        this.name = name;
+        this.profile = profile;
         this.images = images;
         this.text = text;
         this.time = time;
         this.recipeid = recipeid;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getOpenid() {
@@ -41,6 +44,22 @@ public class Post {
 
     public void setOpenid(String openid) {
         this.openid = openid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public List <String> getImages() {
@@ -71,15 +90,7 @@ public class Post {
         return recipeid;
     }
 
-    public void setRecipeid(String recipeId) {
-        this.recipeid = recipeId;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setRecipeid(String recipeid) {
+        this.recipeid = recipeid;
     }
 }

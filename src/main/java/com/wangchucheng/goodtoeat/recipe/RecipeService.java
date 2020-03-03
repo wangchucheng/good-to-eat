@@ -7,11 +7,10 @@ import org.springframework.stereotype.Service;
 public class RecipeService {
     @Autowired
    public  RecipeRepo recipeRepo;
-    public boolean saveRecipe(String title, String image, String timeNeeded, String difficulty, String size){
+    public boolean saveRecipe(Recipe recipe){
 
-        if(title!=null&&image!=null&&timeNeeded!=null&&difficulty!=null&&size!=null){
-            Recipe re=new Recipe(title,image, timeNeeded,difficulty,size);
-            recipeRepo.save(re);
+        if(recipe != null){
+            recipeRepo.save(recipe);
             return true;
         }
         return false;

@@ -11,9 +11,8 @@ public class User {
     @GeneratedValue
     private Long id;
 
-
     @Column(nullable = false)
-    private String openId;
+    private String openid;
 
     @Column(nullable = false)
     private String name;
@@ -21,39 +20,25 @@ public class User {
     @Column(nullable = false)
     private String sex;
 
-
+    @Column(nullable = false)
     private String profile;//avatar
 
     protected User() {
     }
 
-    public User(String openId, String name, String sex){
+    public User(String openid, String name, String sex, String profile){
         this.name=name;
-        this.openId = openId;
-        this.sex=sex;
-    }
-
-    public User(String openId, String name, String sex, String profile){
-        this.name=name;
-        this.openId = openId;
+        this.openid = openid;
         this.profile=profile;
         this.sex=sex;
     }
 
-    public long getId() {
-        return id;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getOpenId() {
-        return openId;
-    }
-
-    public void setOpenId(String openid) {
-        this.openId = openid;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public String getName() {
