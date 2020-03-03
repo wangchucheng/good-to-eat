@@ -1,10 +1,7 @@
 package com.wangchucheng.goodtoeat.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,16 +10,12 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     RecipeService recipeService;
-    @PostMapping(value="")
-    public boolean postRecipeInfo(@RequestParam("title") String title,
-                                  @RequestParam("image") String image,
-                                  @RequestParam("timeNeeded") String timeNeeded,
-                                  @RequestParam("difficulty") String difficulty,
-                                  @RequestParam("size") String size,
-                                  @RequestParam("ingredientsList")List<Ingredients> ingredientsListgit){
-        boolean isSuccess=recipeService.saveRecipe(title,image,timeNeeded,difficulty,size);
-        return isSuccess;
 
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public boolean postRecipeInfo(@RequestBody Recipe recipe){
+        boolean isSuccess=recipeService.saveRecipe(recipe);
+        return isSuccess;
     }
 
 }

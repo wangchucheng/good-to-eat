@@ -27,15 +27,15 @@ public class Recipe {
 
     @Column(nullable = false)
     @ElementCollection
-    private List<Ingredients> ingredientsList;
+    private List<Ingredients> ingredients;
 
     @Column(nullable = false)
     @ElementCollection
-    private List<Nutrition> nutritionList;
+    private List<Nutrition> nutrition;
 
     @Column(nullable = false)
     @ElementCollection
-    private List<Step> stepList;
+    private List<Step> steps;
 
     public Recipe() {
     }
@@ -48,28 +48,28 @@ public class Recipe {
         this.size=size;
     }
 
-    public List<Ingredients> getIngredientsList() {
-        return ingredientsList;
+    public List<Ingredients> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientsList(List<Ingredients> ingredientsList) {
-        this.ingredientsList = ingredientsList;
+    public void setIngredients(List<Ingredients> ingredientsList) {
+        this.ingredients = ingredientsList;
     }
 
-    public List<Nutrition> getNutritionList() {
-        return nutritionList;
+    public List<Nutrition> getNutrition() {
+        return nutrition;
     }
 
-    public void setNutritionList(List<Nutrition> nutritionList) {
-        this.nutritionList = nutritionList;
+    public void setNutrition(List<Nutrition> nutritionList) {
+        this.nutrition = nutritionList;
     }
 
-    public List<Step> getStepList() {
-        return stepList;
+    public List<Step> getSteps() {
+        return steps;
     }
 
-    public void setStepList(List<Step> stepList) {
-        this.stepList = stepList;
+    public void setSteps(List<Step> stepList) {
+        this.steps = stepList;
     }
 
     public Long getId() {

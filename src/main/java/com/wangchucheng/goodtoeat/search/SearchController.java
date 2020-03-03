@@ -1,5 +1,6 @@
 package com.wangchucheng.goodtoeat.search;
 
+import com.wangchucheng.goodtoeat.recipe.Recipe;
 import com.wangchucheng.goodtoeat.search.history.HistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +15,15 @@ import java.util.List;
 @RequestMapping(value = "/search")
 public class SearchController {
     @Autowired
+    private SearchService searchService;
+
+    @Autowired
     private HistoryService historyService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List <SearchResult> getSearchResult(@RequestParam String openid, @RequestParam String keyword) {
+    public List <Recipe> getSearchResult(@RequestParam String openid, @RequestParam String keyword) {
         historyService.saveHistory(openid, keyword);
-        return null;
+        return searchService.searchRecipe(keyword);
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)

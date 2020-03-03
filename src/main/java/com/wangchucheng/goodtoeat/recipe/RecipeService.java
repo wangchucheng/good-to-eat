@@ -9,18 +9,11 @@ import java.util.List;
 public class RecipeService {
     @Autowired
    public  RecipeRepo recipeRepo;
-    public boolean saveRecipe(String title,
-                              String image,
-                              String timeNeeded,
-                              String difficulty,
-                              String size,
-                              List<Ingredients> ingredientsList,
-                              List<Nutrition> nutritionList,
-                              List<Step> stepList){
 
-        if(title!=null&&image!=null&&timeNeeded!=null&&difficulty!=null&&size!=null&&ingredientsList!=null&&nutritionList!=null&& stepList!=null){
-            Recipe re=new Recipe(title,image, timeNeeded,difficulty,size);
-            recipeRepo.save(re);
+    public boolean saveRecipe(Recipe recipe){
+
+        if(recipe != null){
+            recipeRepo.save(recipe);
             return true;
         }
         return false;
