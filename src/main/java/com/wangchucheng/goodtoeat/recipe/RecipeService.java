@@ -3,8 +3,6 @@ package com.wangchucheng.goodtoeat.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class RecipeService {
     @Autowired
@@ -17,6 +15,10 @@ public class RecipeService {
             return true;
         }
         return false;
+    }
+
+    public Recipe findRecipe(Long id){
+        return recipeRepo.findAllById(id);
     }
 
 }
