@@ -16,6 +16,9 @@ public class Recipe {
     @Column(nullable = false)
     private String image;//标题图
 
+    @Column(nullable = true)
+    private String time;
+
     @Column(nullable = false)
     private String timeNeeded;//耗时
 
@@ -40,7 +43,15 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(String title,String image,String timeNeeded,String difficulty,String size){
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Recipe(String title, String image, String timeNeeded, String difficulty, String size){
         this.title=title;
         this.image=image;
         this.timeNeeded=timeNeeded;
