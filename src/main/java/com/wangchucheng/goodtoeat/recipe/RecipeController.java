@@ -47,7 +47,7 @@ public class RecipeController {
     public List<Recipe> getRecomendRecipe(@RequestParam String openid) throws TasteException {
         List<Recipe> result=new ArrayList<>();
         User user=userRepo.findByOpenid(openid);
-        recipeService.getRecommend(user.getId());
+//        recipeService.getRecommend(user.getId());
         result.add(recipeService.findRecipe(0L));
         return result;
     }
