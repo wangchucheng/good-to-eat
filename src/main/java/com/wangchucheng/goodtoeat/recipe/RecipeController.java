@@ -1,6 +1,5 @@
 package com.wangchucheng.goodtoeat.recipe;
 
-import com.wangchucheng.goodtoeat.user.User;
 import com.wangchucheng.goodtoeat.user.UserRepo;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,19 +35,40 @@ public class RecipeController {
         for(RecommendedItem recommendation:recItems){
         }
          */
-        breakfast.add(recipeService.findRecipe(0L));
-        lunch.add(recipeService.findRecipe(1L));
-        dinner.add(recipeService.findRecipe(2L));
+        if(recipeService.findRecipe(0L)!=null) {
+            breakfast.add(recipeService.findRecipe(0L));
+            lunch.add(recipeService.findRecipe(0L));
+            dinner.add(recipeService.findRecipe(0L));
+        }else{
+            //如果数据不够，用这个做测试
+            Recipe test=new Recipe();
+            test.setId(10L);
+            test.setTitle("测试菜例");
+            test.setImage("https://img-global.cpcdn.com/012_recipes/477df03d4329e08296d2932427895151/1200x630cq70/photo.jpg");
+            breakfast.add(test);
+            lunch.add(test);
+            dinner.add(test);
+        }
         TodayRes result=new TodayRes(breakfast,lunch,dinner);
         return result;
     }
 
     @GetMapping(value="/recommendation")
-    public List<Recipe> getRecomendRecipe(@RequestParam String openid) throws TasteException {
+    public List<Recipe> getRecommendRecipe(@RequestParam String openid) throws TasteException {
         List<Recipe> result=new ArrayList<>();
-        User user=userRepo.findByOpenid(openid);
+  //      User user=userRepo.findByOpenid(openid);
 //        recipeService.getRecommend(user.getId());
-        result.add(recipeService.findRecipe(0L));
+        if(recipeService.findRecipe(0L)!=null) {
+            result.add(recipeService.findRecipe(0L));
+        }else{
+            //如果数据不够，用这个做测试
+            Recipe test=new Recipe();
+            test.setId(10L);
+            test.setTitle("测试菜例");
+            test.setImage("https://img-global.cpcdn.com/012_recipes/477df03d4329e08296d2932427895151/1200x630cq70/photo.jpg");
+            result.add(test);
+
+        }
         return result;
     }
 
