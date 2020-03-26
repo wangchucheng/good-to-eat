@@ -10,6 +10,11 @@ public class Step {
     public Step() {
     }
 
+    public Step(String image,String description) {
+        this.image=image;
+        this.description=description;
+    }
+
     public String getImage() {
         return image;
     }

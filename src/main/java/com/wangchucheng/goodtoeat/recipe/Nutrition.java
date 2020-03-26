@@ -10,6 +10,11 @@ public class Nutrition {
     public Nutrition() {
     }
 
+    public Nutrition(String name,String amount) {
+        this.name=name;
+        this.amount=amount;
+    }
+
     public String getName() {
         return name;
     }
