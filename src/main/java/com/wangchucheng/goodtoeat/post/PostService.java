@@ -24,14 +24,22 @@ public class PostService {
         return false;
     }
 
-    List <PostResult> getPosts() {
-        List <Post> posts= postRepo.findAllByIdGreaterThan(new Long(0));
+    List <PostResult> getPosts(String openid) {
+        List <Post> posts;
+        if (openid == null) {
+            posts = postRepo.findAll();
+        } else {
+            posts = postRepo.findAllByOpenid(openid);
+        }
+
         List <PostResult> postResults = new ArrayList <>();
-        for(Post post: posts){
-            User user = userRepo.findByOpenid(post.getOpenid());
-            PostResult postResult = new PostResult(post.getId(), post.getOpenid(), user.getName(), user.getProfile(),
-                    post.getImages(), post.getText(), post.getTime(), post.getRecipeid());
-            postResults.add(postResult);
+        if (posts != null) {
+            for(Post post: posts){
+                User user = userRepo.findByOpenid(post.getOpenid());
+                PostResult postResult = new PostResult(post.getId(), post.getOpenid(), user.getName(), user.getProfile(),
+                        post.getImages(), post.getText(), post.getTime(), post.getRecipeid());
+                postResults.add(postResult);
+            }
         }
         return postResults;
     }

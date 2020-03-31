@@ -1,6 +1,7 @@
 package com.wangchucheng.goodtoeat.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public List <PostResult> getPosts() {
-        return postService.getPosts();
+    public List <PostResult> getPosts(@RequestParam @Nullable String openid) {
+        return postService.getPosts(openid);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
