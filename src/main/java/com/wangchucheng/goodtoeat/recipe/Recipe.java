@@ -2,13 +2,23 @@ package com.wangchucheng.goodtoeat.recipe;
 
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Recipe {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(nullable = false)
+    private String openid;
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
 
     @Column(nullable = false)
     private String title;//标题
@@ -29,16 +39,13 @@ public class Recipe {
     private String size;//份量
 
     @Column(nullable = false)
-    @ElementCollection
-    private List<Ingredients> ingredients;
+    private String ingredients;
 
     @Column(nullable = false)
-    @ElementCollection
-    private List<Nutrition> nutrition;
+    private String nutrition;
 
     @Column(nullable = false)
-    @ElementCollection
-    private List<Step> steps;
+    private String steps;
 
     public Recipe() {
     }
@@ -59,27 +66,27 @@ public class Recipe {
         this.size=size;
     }
 
-    public List<Ingredients> getIngredients() {
+    public String getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredients> ingredientsList) {
+    public void setIngredients(String ingredientsList) {
         this.ingredients = ingredientsList;
     }
 
-    public List<Nutrition> getNutrition() {
+    public String getNutrition() {
         return nutrition;
     }
 
-    public void setNutrition(List<Nutrition> nutritionList) {
+    public void setNutrition(String nutritionList) {
         this.nutrition = nutritionList;
     }
 
-    public List<Step> getSteps() {
+    public String getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> stepList) {
+    public void setSteps(String stepList) {
         this.steps = stepList;
     }
 

@@ -1,6 +1,6 @@
 package com.wangchucheng.goodtoeat.recipe;
 
-import com.wangchucheng.goodtoeat.user.UserRepo;
+import com.sun.istack.Nullable;
 import org.apache.mahout.cf.taste.common.TasteException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 public class RecipeController {
     @Autowired
     RecipeService recipeService;
-    UserRepo userRepo;
+
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -21,8 +21,6 @@ public class RecipeController {
         boolean isSuccess=recipeService.saveRecipe(recipe);
         return isSuccess;
     }
-
-
 
     @GetMapping(value="/today")
     public TodayRes getTodayRecipe(@RequestParam String openid) throws TasteException {
@@ -79,18 +77,9 @@ public class RecipeController {
         if(s==null){
             //如果数据不够，用这个做测试
             Recipe test=new Recipe();
-            List<Ingredients> ingre=new ArrayList<>();
-            Ingredients in1=new Ingredients("pepper","25g");
-            Ingredients in2=new Ingredients("butter","200g");
-            List<Nutrition> nutris=new ArrayList<>();
-            Nutrition nu1=new Nutrition("VitaminA","2%");
-            Nutrition nu2=new Nutrition("protein","30%");
-            List<Step> steps=new ArrayList<>();
-            Step step1=new Step("https://www.bing.com/th/id/OIP.N0ACeolFJN8u1deIO_PcsAHaE7?pid=Api&rs=1","cut");
-            Step step2=new Step("https://www.bing.com/th/id/OIP.zPpMx4LH3yXNkHhvGsvRkAHaEK?pid=Api&rs=1","fry");
-            steps.add(step1);steps.add(step2);
-            nutris.add(nu1);nutris.add(nu2);
-            ingre.add(in1);ingre.add(in2);
+            String ingre="黄油200g,面粉300g,酵母3g";
+            String nutris="维他命A 2%, 蛋白质 30%";
+            String steps="1. 将黄油切碎，与面粉混合均匀 2. 将酵母放入适当水中化开，并与第一步中的食物混合 3. 揉成一个面团";
             test.setId(10L);
             test.setTitle("测试菜例");
             test.setImage("https://img-global.cpcdn.com/012_recipes/477df03d4329e08296d2932427895151/1200x630cq70/photo.jpg");
@@ -105,6 +94,9 @@ public class RecipeController {
             return s;
         }
     }
-
-
+    //获取食谱列表
+    @GetMapping
+    public List<Recipe> getRecipeList(@RequestParam @Nullable String openid){
+        return recipeService.findUserRecipe(openid);
+    }
 }

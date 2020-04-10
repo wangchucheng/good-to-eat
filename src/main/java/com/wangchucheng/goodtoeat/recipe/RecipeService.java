@@ -3,6 +3,8 @@ package com.wangchucheng.goodtoeat.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecipeService {
     @Autowired
@@ -16,6 +18,16 @@ public class RecipeService {
         }
         return false;
     }
+    //根据openid获取该用户对应的所有菜谱
+    public List<Recipe> findUserRecipe(String openid){
+        if(openid!=null) {
+            return recipeRepo.findAllByOpenid(openid);
+        }else{
+            //返回所有的菜谱
+            return recipeRepo.findAllByIdExists();
+        }
+    }
+
 
     public Recipe findRecipe(Long id){
 
