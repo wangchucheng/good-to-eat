@@ -11,7 +11,6 @@ public class Recipe {
 
     @Column(nullable = false)
     private String openid;
-
     public String getOpenid() {
         return openid;
     }
@@ -19,14 +18,13 @@ public class Recipe {
     public void setOpenid(String openid) {
         this.openid = openid;
     }
-
     @Column(nullable = false)
     private String title;//标题
 
     @Column(nullable = false)
     private String image;//标题图
 
-    @Column(nullable = true)
+    @Column(nullable = false)
     private String time;
 
     @Column(nullable = false)
@@ -58,7 +56,8 @@ public class Recipe {
         this.time = time;
     }
 
-    public Recipe(String title, String image, String timeNeeded, String difficulty, String size){
+    public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size){
+        this.openid = openid;
         this.title=title;
         this.image=image;
         this.timeNeeded=timeNeeded;
@@ -67,6 +66,7 @@ public class Recipe {
     }
 
     public String getIngredients() {
+
         return ingredients;
     }
 
