@@ -3,6 +3,8 @@ package com.wangchucheng.goodtoeat.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -38,6 +40,31 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    //不仅仅是savefollower，将follow也一并处理了
+    boolean saveFollower(String openid,String followid){
+        //followid是被关注的人的openid
+        User u=userRepo.findByOpenid(openid);
+        User f=userRepo.findByOpenid(followid);
+        if(u!=null&&f!=null){
+            //follower和openid对应的用户都是存在的
+             List<String> followers= f.getFollower();
+             followers.add(followid);
+             f.setFollower(followers);//被关注人的粉丝更新
+            u.setFollow(followers);//用户关注的人的数量更新
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    boolean deleteFollow(String openid,String followid){
+        User u=userRepo.findByOpenid(openid);
+        User f=userRepo.findByOpenid(followid);
+        if(u!=null&&f!=null){
+            List<String> follow=u.getFollow()
+        }
     }
 
 

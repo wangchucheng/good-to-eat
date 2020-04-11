@@ -11,13 +11,7 @@ public class Recipe {
 
     @Column(nullable = false)
     private String openid;
-    public String getOpenid() {
-        return openid;
-    }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
-    }
     @Column(nullable = false)
     private String title;//标题
 
@@ -68,6 +62,14 @@ public class Recipe {
     public String getIngredients() {
 
         return ingredients;
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
     public void setIngredients(String ingredientsList) {

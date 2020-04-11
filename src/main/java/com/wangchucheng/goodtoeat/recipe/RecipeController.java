@@ -14,8 +14,6 @@ public class RecipeController {
     @Autowired
     RecipeService recipeService;
 
-
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public boolean postRecipeInfo(@RequestBody Recipe recipe){
         boolean isSuccess=recipeService.saveRecipe(recipe);

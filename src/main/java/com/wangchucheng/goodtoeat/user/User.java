@@ -1,9 +1,7 @@
 package com.wangchucheng.goodtoeat.user;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -23,7 +21,30 @@ public class User {
     @Column(nullable = false)
     private String profile;//avatar
 
+    @ElementCollection
+    private List<String> follower;//我的粉丝们
+
+    @ElementCollection
+    private List<String> follow;//我的关注们
+
+
     protected User() {
+    }
+
+    public List<String> getFollow() {
+        return follow;
+    }
+
+    public void setFollow(List<String> follow) {
+        this.follow = follow;
+    }
+
+    public List<String> getFollower() {
+        return follower;
+    }
+
+    public void setFollower(List<String> follower) {
+        this.follower = follower;
     }
 
     public User(String openid, String name, String sex, String profile){
