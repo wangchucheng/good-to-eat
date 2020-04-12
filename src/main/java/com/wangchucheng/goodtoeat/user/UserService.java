@@ -17,7 +17,7 @@ public class UserService {
         }
         return false;
     }
-    User findUser(String openid){
+    public User findUser(String openid){
         return userRepo.findByOpenid(openid);
     }
     boolean updateUser(String openid,User user){
@@ -60,10 +60,22 @@ public class UserService {
     }
 
     boolean deleteFollow(String openid,String followid){
+        //followid是被关注的人的openid
         User u=userRepo.findByOpenid(openid);
         User f=userRepo.findByOpenid(followid);
         if(u!=null&&f!=null){
-            List<String> follow=u.getFollow()
+            List<String> follow=u.getFollow();
+            int i=follow.indexOf(followid);
+            follow.remove(i);
+            u.setFollow(follow);
+            //删除被关注者的粉丝
+            List<String> fans=f.getFollower();
+            int j=fans.indexOf(openid);
+            fans.remove(j);
+            f.setFollower(fans);
+            return true;
+        }else{
+            return false;
         }
     }
 

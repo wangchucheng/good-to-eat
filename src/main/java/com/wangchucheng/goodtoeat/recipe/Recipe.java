@@ -39,6 +39,17 @@ public class Recipe {
     @Column(nullable = false)
     private String steps;
 
+    @Column(nullable = false)
+    private int collectedTimes;
+
+    public int getCollectedTimes() {
+        return collectedTimes;
+    }
+
+    public void setCollectedTimes(int collectedTimes) {
+        this.collectedTimes = collectedTimes;
+    }
+
     public Recipe() {
     }
 
@@ -50,13 +61,14 @@ public class Recipe {
         this.time = time;
     }
 
-    public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size){
+    public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size,int collectedTimes){
         this.openid = openid;
         this.title=title;
         this.image=image;
         this.timeNeeded=timeNeeded;
         this.difficulty=difficulty;
         this.size=size;
+        this.collectedTimes=collectedTimes;
     }
 
     public String getIngredients() {

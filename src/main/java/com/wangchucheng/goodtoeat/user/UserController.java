@@ -3,6 +3,7 @@ package com.wangchucheng.goodtoeat.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,9 +24,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{openid}/follow")
-    public List<String> getFollow(@PathVariable String openid){
+    public List<User> getFollow(@PathVariable String openid){
         if(userService.findUser(openid)!=null){
-            return userService.findUser(openid).getFollow();
+            List<String> strLists=userService.findUser(openid).getFollow();
+            List<User> res=new ArrayList<>();
+            for(int i=0;i<strLists.size();i++){
+                res.add(userService.findUser(strLists.get(i)));
+            }
+            return res;
         }else{
             return null;
         }
@@ -33,9 +39,14 @@ public class UserController {
     }
 
     @GetMapping(value = "/user/{openid}/follower")
-    public List<String> getFollower(@PathVariable String openid){
+    public List<User> getFollower(@PathVariable String openid){
         if(userService.findUser(openid)!=null){
-            return userService.findUser(openid).getFollower();
+            List<String> strlists=userService.findUser(openid).getFollower();
+            List<User> res=new ArrayList<>();
+            for(int i=0;i<strlists.size();i++){
+                res.add(userService.findUser(strlists.get(i)));
+            }
+            return res;
         }else{
             return null;
         }
@@ -43,5 +54,10 @@ public class UserController {
 
     //取消关注
     @DeleteMapping(value = "/user/{openid}/follow")
+    public boolean deletefollow(@PathVariable String openid,@RequestParam String followid){
+        //取消关注
+        return userService.deleteFollow(openid,followid);
+    }
+
 
 }
