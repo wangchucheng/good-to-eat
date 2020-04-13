@@ -13,6 +13,8 @@ import java.util.List;
 public class FavorController {
     @Autowired
     RecipeService recipeService;
+
+    @Autowired
     FavorService favorService;
 
     @GetMapping(value = "/user/{openid}")
@@ -28,7 +30,13 @@ public class FavorController {
 
     @GetMapping(value = "/recipe/{id}/number")
     int getCollectedTimes(@PathVariable Long id){
-        return recipeService.findRecipe(id).getCollectedTimes();
+
+        Recipe re=recipeService.findRecipe(id);
+        if(re!=null) {
+         return re.getCollectedTimes();
+        }else{
+            return 0;
+        }
     }
 
     @PostMapping(value = "/user/{openid}/recipe/{id}")
