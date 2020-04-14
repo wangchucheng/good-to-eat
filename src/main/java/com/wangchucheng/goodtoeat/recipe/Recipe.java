@@ -36,7 +36,7 @@ public class Recipe {
     @Column(nullable = false)
     private String nutrition;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 5000)
     private String steps;
 
     @Column(nullable = false)
