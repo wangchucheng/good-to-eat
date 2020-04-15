@@ -18,6 +18,10 @@ public class UserController {
         return isSuccess;
     }
 
+    @GetMapping(value = "")
+    public User getUser(@RequestParam String openid){
+        return userService.findUser(openid);
+    }
     @PostMapping(value ="/user/{openid}/follow" )
     public boolean postFollow(@PathVariable String openid, @RequestParam String folOpenid){
         return userService.saveFollower(openid,folOpenid);
