@@ -12,7 +12,11 @@ public class UserService {
 
     boolean saveUser(User user){
         if (user != null) {
+            if(userRepo.existsUserByOpenid(user.getOpenid())==false){
             userRepo.save(user);
+            }else{
+                return updateUser(user.getOpenid(),user);
+            }
             return true;
         }
         return false;

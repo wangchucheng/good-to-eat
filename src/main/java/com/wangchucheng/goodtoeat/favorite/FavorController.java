@@ -2,6 +2,7 @@ package com.wangchucheng.goodtoeat.favorite;
 
 import com.wangchucheng.goodtoeat.recipe.Recipe;
 import com.wangchucheng.goodtoeat.recipe.RecipeService;
+import com.wangchucheng.goodtoeat.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class FavorController {
     }
 
     @DeleteMapping(value = "/recipe/{id}")
-    boolean cancelCollect(@PathVariable long id,@RequestParam String openid){
-        return favorService.cancelCol(openid,id);
+    boolean cancelCollect(@PathVariable long id, @RequestBody User user){
+        return favorService.cancelCol(user.getOpenid(),id);
     }
 }

@@ -14,6 +14,7 @@ public class UserController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public boolean postUserInfo(@RequestBody User user){
+
         boolean isSuccess=userService.saveUser(user);
         return isSuccess;
     }
