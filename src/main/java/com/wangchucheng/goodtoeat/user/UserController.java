@@ -23,12 +23,12 @@ public class UserController {
     public User getUser(@RequestParam String openid){
         return userService.findUser(openid);
     }
-    @PostMapping(value ="/user/{openid}/follow" )
+    @PostMapping(value ="/{openid}/follow" )
     public boolean postFollow(@PathVariable String openid, @RequestParam String folOpenid){
         return userService.saveFollower(openid,folOpenid);
     }
 
-    @GetMapping(value = "/user/{openid}/follow")
+    @GetMapping(value = "/{openid}/follow")
     public List<User> getFollow(@PathVariable String openid){
         if(userService.findUser(openid)!=null){
             List<String> strLists=userService.findUser(openid).getFollow();
@@ -43,7 +43,7 @@ public class UserController {
 
     }
 
-    @GetMapping(value = "/user/{openid}/follower")
+    @GetMapping(value = "/{openid}/follower")
     public List<User> getFollower(@PathVariable String openid){
         if(userService.findUser(openid)!=null){
             List<String> strlists=userService.findUser(openid).getFollower();
@@ -58,7 +58,7 @@ public class UserController {
     }
 
     //取消关注
-    @DeleteMapping(value = "/user/{openid}/follow")
+    @DeleteMapping(value = "/{openid}/follow")
     public boolean deletefollow(@PathVariable String openid,@RequestParam String followid){
         //取消关注
         return userService.deleteFollow(openid,followid);

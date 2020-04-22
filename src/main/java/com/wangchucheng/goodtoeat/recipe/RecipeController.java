@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping(value="/recipe")
@@ -22,7 +23,6 @@ public class RecipeController {
 
     @GetMapping(value="/today")
     public TodayRes getTodayRecipe(@RequestParam String openid) throws TasteException {
-    //应该用推荐算法的，暂时用随机来代替
         List<Recipe> breakfast=new ArrayList<>();
         List<Recipe> lunch=new ArrayList<>();
         List<Recipe> dinner=new ArrayList<>();
@@ -31,10 +31,16 @@ public class RecipeController {
         for(RecommendedItem recommendation:recItems){
         }
          */
-        if(recipeService.findRecipe(0L)!=null) {
-            breakfast.add(recipeService.findRecipe(0L));
-            lunch.add(recipeService.findRecipe(0L));
-            dinner.add(recipeService.findRecipe(0L));
+        if(recipeService.findAll()!=null) {
+            List<Recipe> repo=recipeService.findAll();
+            int index=repo.size();
+            Random r = new Random();
+            int i1= r.nextInt(index);
+            int i2=r.nextInt(index);
+            int i3=r.nextInt(index);
+            breakfast.add(repo.get(i1));
+            lunch.add(repo.get(i2));
+            dinner.add(repo.get(i3));
         }else{
             //如果数据不够，用这个做测试
             Recipe test=new Recipe();
@@ -54,8 +60,20 @@ public class RecipeController {
         List<Recipe> result=new ArrayList<>();
   //      User user=userRepo.findByOpenid(openid);
 //        recipeService.getRecommend(user.getId());
-        if(recipeService.findRecipe(0L)!=null) {
-            result.add(recipeService.findRecipe(0L));
+        Random r = new Random();
+        if(recipeService.findAll()!=null) {
+            List<Recipe> repo=recipeService.findAll();
+            int n=repo.size();
+            int index=-1;
+            for(int i=0;i<5;i++) {
+                int ran=r.nextInt(n);
+                while (ran==index){
+                    ran=r.nextInt(n);
+                }
+                index=ran;
+                result.add(repo.get(index));
+            }
+
         }else{
             //如果数据不够，用这个做测试
             Recipe test=new Recipe();

@@ -10,6 +10,10 @@ public class RecipeService {
     @Autowired
    public  RecipeRepo recipeRepo;
 
+    public List<Recipe> findAll(){
+        return recipeRepo.findAll();
+    }
+
     public boolean saveRecipe(Recipe recipe){
 
         if(recipe != null){
