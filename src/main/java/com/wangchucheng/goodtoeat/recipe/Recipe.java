@@ -1,7 +1,11 @@
 package com.wangchucheng.goodtoeat.recipe;
 
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 public class Recipe {
@@ -19,7 +23,7 @@ public class Recipe {
     private String image;//标题图
 
     @Column(nullable = false)
-    private String time;
+    private Timestamp posttime;
 
     @Column(nullable = false)
     private String timeNeeded;//耗时
@@ -53,15 +57,19 @@ public class Recipe {
     public Recipe() {
     }
 
-    public String getTime() {
-        return time;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public Timestamp getPosttime() {
+        return posttime;
     }
 
-    public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size,int collectedTimes){
+    public void setPosttime(Timestamp posttime) {
+        this.posttime = posttime;
+    }
+
+    public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size, int collectedTimes){
         this.openid = openid;
         this.title=title;
         this.image=image;

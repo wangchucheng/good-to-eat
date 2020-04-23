@@ -3,6 +3,7 @@ package com.wangchucheng.goodtoeat.recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -17,6 +18,7 @@ public class RecipeService {
     public boolean saveRecipe(Recipe recipe){
 
         if(recipe != null){
+            recipe.setPosttime(new Timestamp(System.currentTimeMillis()));
             recipeRepo.save(recipe);
             return true;
         }
