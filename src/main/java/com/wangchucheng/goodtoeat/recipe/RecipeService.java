@@ -18,7 +18,7 @@ public class RecipeService {
     public boolean saveRecipe(Recipe recipe){
 
         if(recipe != null){
-            recipe.setPosttime(new Timestamp(System.currentTimeMillis()));
+            recipe.setTime(new Timestamp(System.currentTimeMillis()));
             recipeRepo.save(recipe);
             return true;
         }

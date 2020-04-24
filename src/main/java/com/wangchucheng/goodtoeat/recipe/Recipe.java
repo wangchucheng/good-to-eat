@@ -23,7 +23,7 @@ public class Recipe {
     private String image;//标题图
 
     @Column(nullable = false)
-    private Timestamp posttime;
+    private Timestamp time;
 
     @Column(nullable = false)
     private String timeNeeded;//耗时
@@ -61,12 +61,12 @@ public class Recipe {
         this.id = id;
     }
 
-    public Timestamp getPosttime() {
-        return posttime;
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setPosttime(Timestamp posttime) {
-        this.posttime = posttime;
+    public void setTime(Timestamp posttime) {
+        this.time = posttime;
     }
 
     public Recipe(String openid, String title, String image, String timeNeeded, String difficulty, String size, int collectedTimes){
