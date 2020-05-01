@@ -31,6 +31,7 @@ public class FavorService {
           int sum=recipeRepo.findAllById(id).getCollectedTimes()+1;
           recipeRepo.findAllById(id).setCollectedTimes(sum);
           favorRepo.findByOpenid(openid).setRecipeCollections(sl);
+          favorRepo.save(favorRepo.findByOpenid(openid));
           return true;
       }else if(userRepo.findByOpenid(openid)!=null&&recipeRepo.findAllById(id)!=null){
           Favor f=new Favor();
