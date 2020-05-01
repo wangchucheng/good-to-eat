@@ -8,6 +8,7 @@ import java.util.List;
 public class Favor {
 
     @Id
+    @GeneratedValue
     private long userId;
 
     @Column
@@ -17,6 +18,10 @@ public class Favor {
     private List<Long> recipeCollections;
     //这个里面存储了openid对应用户收藏的所有菜单
 
+
+    public Favor() {
+
+    }
 
     public long getUserId() {
         return userId;

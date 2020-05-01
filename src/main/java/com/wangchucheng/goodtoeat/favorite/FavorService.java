@@ -1,6 +1,7 @@
 package com.wangchucheng.goodtoeat.favorite;
 
 import com.wangchucheng.goodtoeat.recipe.RecipeRepo;
+import com.wangchucheng.goodtoeat.user.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,8 @@ public class FavorService {
   FavorRepo favorRepo;
     @Autowired
   RecipeRepo recipeRepo;
+    @Autowired
+    UserRepo userRepo;
   List<Long> getCollections(String openid){
       List<Long> res=new ArrayList<>();
       Favor f=favorRepo.findByOpenid(openid);
@@ -28,6 +31,16 @@ public class FavorService {
           int sum=recipeRepo.findAllById(id).getCollectedTimes()+1;
           recipeRepo.findAllById(id).setCollectedTimes(sum);
           favorRepo.findByOpenid(openid).setRecipeCollections(sl);
+          return true;
+      }else if(userRepo.findByOpenid(openid)!=null&&recipeRepo.findAllById(id)!=null){
+          Favor f=new Favor();
+          f.setOpenid(openid);
+          List<Long> col=new ArrayList<>();
+          col.add(recipeRepo.findAllById(id).getId());
+          f.setRecipeCollections(col);
+          int sum=recipeRepo.findAllById(id).getCollectedTimes()+1;
+          recipeRepo.findAllById(id).setCollectedTimes(sum);
+          favorRepo.save(f);
           return true;
       }
       return false;

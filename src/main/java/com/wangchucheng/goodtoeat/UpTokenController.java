@@ -1,10 +1,9 @@
 package com.wangchucheng.goodtoeat;
 
+import com.qiniu.util.Auth;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.qiniu.util.Auth;
-
 @RestController
 @RequestMapping(value="/uptoken")
 public class UpTokenController {
