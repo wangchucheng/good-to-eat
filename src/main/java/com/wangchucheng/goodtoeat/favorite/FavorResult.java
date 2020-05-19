@@ -6,13 +6,33 @@ public class FavorResult {
     private String image;
     private String timeNeeded;
     private String difficulty;
+    private String nickname;//收藏的作者姓名
+    private String profile;//收藏的作者头像
 
-    public FavorResult(long id, String title, String image, String timeNeeded, String difficulty) {
+    public FavorResult(long id, String title, String image, String timeNeeded, String difficulty, String nickname, String profile) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.timeNeeded = timeNeeded;
         this.difficulty = difficulty;
+        this.nickname = nickname;
+        this.profile = profile;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     public long getId() {

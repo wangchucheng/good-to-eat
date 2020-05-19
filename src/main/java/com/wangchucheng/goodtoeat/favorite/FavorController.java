@@ -3,6 +3,7 @@ package com.wangchucheng.goodtoeat.favorite;
 import com.wangchucheng.goodtoeat.recipe.Recipe;
 import com.wangchucheng.goodtoeat.recipe.RecipeService;
 import com.wangchucheng.goodtoeat.user.User;
+import com.wangchucheng.goodtoeat.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,17 @@ public class FavorController {
     @Autowired
     FavorService favorService;
 
+    @Autowired
+    UserService userService;
+
     @GetMapping(value = "/user/{openid}")
     List<FavorResult> getUserCollection(@PathVariable String openid){
         List<Long> collections=favorService.getCollections(openid);
         List<FavorResult> res=new ArrayList<>();
         for(int i=0;i<collections.size();i++){
             Recipe re=recipeService.findRecipe(collections.get(i));
-            res.add(new FavorResult(re.getId(),re.getTitle(),re.getImage(),re.getTimeNeeded(),re.getDifficulty()));
+            User author=userService.findUser(re.getOpenid());
+            res.add(new FavorResult(re.getId(),re.getTitle(),re.getImage(),re.getTimeNeeded(),re.getDifficulty(),author.getName(),author.getProfile()));
         }
         return res;
     }

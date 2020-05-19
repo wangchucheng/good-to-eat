@@ -39,24 +39,25 @@ public class RecipeService {
     public Recipe findRecipe(Long id){
         return recipeRepo.findAllById(id);
     }
+/*
+   public List<RecommendedItem> getRecommend(Long id) throws TasteException {
+        DataSource dataSource=new DataSource();
+        dataSource.setServerName("localhost");
+        dataSource.setUser("root");
+        dataSource.setPassword("111");
+        dataSource.setDatabaseName("good_to_eat");
+        JDBCDataModel dm=new MySQLJDBCDataModel(dataSource,"Recipe","id","title","image","time");
+        DataModel model=dm;
+        UserSimilarity sim=new PearsonCorrelationSimilarity(model);
+        UserNeighborhood neighbor=new NearestNUserNeighborhood(2,sim,model);
+        Recommender rec=new GenericBooleanPrefUserBasedRecommender(model,neighbor,sim);//基于用户的推荐算法
+        List<RecommendedItem> res=rec.recommend(id,3);//根据用户1，推荐3个相似的产品
 
-//    public List<RecommendedItem> getRecommend(Long id) throws TasteException {
-//        //与数据库建立连接
-//        MysqlDataSource dataSource=new MysqlDataSource();
-//        dataSource.setServerName("localhost");
-//        dataSource.setUser("root");
-//        dataSource.setPassword("111");
-//        dataSource.setDatabaseName("good_to_eat");
-//        JDBCDataModel dm=new MySQLJDBCDataModel(dataSource,"Recipe","id","title","image","time");
-//        DataModel model=dm;
-//        UserSimilarity sim=new PearsonCorrelationSimilarity(model);
-//        UserNeighborhood neighbor=new NearestNUserNeighborhood(2,sim,model);
-//        Recommender rec=new GenericBooleanPrefUserBasedRecommender(model,neighbor,sim);//基于用户的推荐算法
-//        List<RecommendedItem> res=rec.recommend(id,3);//根据用户1，推荐3个相似的产品
-//
-//        return res;
-//
-//
-//    }
+        return res;
+
+    }
+
+ */
+
 
 }
