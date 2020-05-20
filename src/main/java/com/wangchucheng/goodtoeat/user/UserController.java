@@ -24,7 +24,7 @@ public class UserController {
         return userService.findUser(openid);
     }
     @PostMapping(value ="/{openid}/follow" )
-    public boolean postFollow(@PathVariable String openid, @RequestParam String folOpenid){
+    public boolean postFollow(@PathVariable String openid, @RequestBody String folOpenid){
         return userService.saveFollower(openid,folOpenid);
     }
 
