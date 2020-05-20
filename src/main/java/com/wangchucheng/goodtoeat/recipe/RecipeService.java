@@ -1,5 +1,8 @@
 package com.wangchucheng.goodtoeat.recipe;
 
+import org.apache.mahout.cf.taste.impl.recommender.GenericBooleanPrefUserBasedRecommender;
+import org.apache.mahout.cf.taste.recommender.RecommendedItem;
+import org.apache.mahout.cf.taste.recommender.Recommender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +42,7 @@ public class RecipeService {
     public Recipe findRecipe(Long id){
         return recipeRepo.findAllById(id);
     }
-/*
+
    public List<RecommendedItem> getRecommend(Long id) throws TasteException {
         MysqlDataSource dataSource=new MysqlDataSource();
         dataSource.setServerName("localhost");
@@ -57,7 +60,7 @@ public class RecipeService {
 
     }
 
-*/
+
 
 
 }
